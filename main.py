@@ -16,7 +16,7 @@ def changeCurrent(dir):
     global current
     if dir and (current < 3):
         current += 1
-    if not dir and (current > 1):
+    if (not dir) and (current != 0):
         current -= 1
 
 
@@ -44,13 +44,13 @@ def on_release(key):
     if key == keyboard.Key.esc:
         # Stop listener
         return False
-    if key == keyboard.Key.down:  # if key 'r' is pressed
+    if str(key) == "Key.down":  # if key 'r' is pressed
         changeCurrent(True)
 
-    if key == keyboard.Key.up:
+    if str(key) == "Key.up":
         changeCurrent(False)
 
-    if "x" == str(key):
+    if "\'x\'" == str(key):
         if selections[current] == "":
             selections[current] = "X"
         else:
@@ -58,8 +58,8 @@ def on_release(key):
         system("cls")
         showSelection()
     else:
-        print('Key released: {0}'.format(
-            key))
+        print(f'Key released: {key}')
+
 
 def main():
     global current
